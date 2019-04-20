@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { Route, Switch, Router } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 // Import routes
-import Home from "./home";
+import home from "./home";
 
 class Routes extends Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route path="/" render={routeProps => <Home {...routeProps} />} />
+          <Route exact path="/" component={home} />
         </Switch>
       </Router>
     );

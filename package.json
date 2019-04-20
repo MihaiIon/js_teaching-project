@@ -2,7 +2,7 @@
   "name": "react-starterkit",
   "version": "1.0.0",
   "description": "React Starterkit",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -24,7 +24,9 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.0",
     "react-ionicons": "^3.0.1",
+    "react-reveal": "^1.2.2",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-spring": "^8.0.18",
