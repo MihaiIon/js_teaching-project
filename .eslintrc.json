@@ -19,6 +19,7 @@
     "linebreak-style": "off",
     "react/prefer-stateless-function": "off",
     "no-use-before-define": "off",
+    "no-void": 0,
     "react/jsx-closing-bracket-location": "off",
     "react/jsx-curly-spacing": "off",
     "react/jsx-equals-spacing": "off",

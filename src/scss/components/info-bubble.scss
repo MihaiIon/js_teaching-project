@@ -1,0 +1,43 @@
+// ======================================================
+// Components / info-bubble
+// ======================================================
+
+.c-info-bubble,
+.c-info-bubble_btn {
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.c-info-bubble {
+  z-index: 100;
+  position: fixed;
+  right: rem($info-bubble--offset * 1.25);
+  bottom: rem($info-bubble--offset);
+
+  padding: rem($info-bubble--outer-padding);
+  background-color: $bubble-color;
+
+  @include u-hocus {
+    background-color: $bubble-color-dark;
+    .c-info-bubble_btn {
+      border-color: $bubble-color;
+    }
+  }
+  transition: background-color $speed / 2 $easing;
+}
+
+.c-info-bubble_btn {
+  padding: rem($info-bubble--inner-padding);
+  border: solid $bubble-color-light 2px;
+  transition: border-color $speed / 2 $easing;
+}
+
+.c-info-bubble_icon {
+  width: rem($info-bubble--icon-size);
+  height: rem($info-bubble--icon-size);
+  color: $white;
+}
+
+.c-info-bubble_p {
+  padding: 0 rem($unit / 4);
+}
