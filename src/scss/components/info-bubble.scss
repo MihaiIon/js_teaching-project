@@ -87,6 +87,11 @@
   padding: 0 rem($unit / 4);
 }
 
+.c-info-bubble_highlight {
+  font-weight: bold;
+  font-size: rem($font-size * 1.05);
+}
+
 .c-info-bubble_assertions_icon,
 .c-info-bubble_assertions_message {
   display: inline-block;

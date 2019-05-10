@@ -8,14 +8,14 @@ import { Tooltip } from "react-tippy";
 // Helpers
 import { getCurrentStepHTML } from "../selectors";
 
-// Context
-import { AppContext } from "./App";
-
 // Constants
 import { INFO_BUBBLE_DELAY } from "../constants/time";
 
 // Info Bubble
 // ======================================================
+
+// Context
+import { AppContext } from "./App";
 
 function InfoBubble() {
   // Hooks
@@ -32,10 +32,11 @@ function InfoBubble() {
         isVisible && (
           <Tooltip
             arrow
-            interactive
-            className="c-info-bubble"
+            arrowSize="big"
             position="left"
+            className="c-info-bubble"
             html={getCurrentStepHTML(state)}
+            interactive
           >
             <Fade bottom>
               <div className="c-info-bubble_circle">

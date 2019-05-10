@@ -3,5 +3,6 @@
 // ======================================================
 
 export const STEP_LABEL = {
-  FUNCTION: "function"
+  FUNCTION: "function",
+  VARIABLES: "variables"
 };

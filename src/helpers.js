@@ -185,3 +185,45 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
     </Code>
   </Fragment>
 );
+
+// ------------------------------------------------------
+
+/**
+ * TODO
+ * @param {String} name Variable's name
+ * @param {String | Object} type Expected type of the variable
+ */
+export const createVariableDefinitionForStep = (name, type) => (
+  <Fragment>
+    <Code
+      language="javascript"
+      style={codeStyle}
+      className="c-info-bubble_pre"
+      codeTagProps={{ className: "c-info-bubble_code" }}
+    >
+      {`var ${name} = ... ;`}
+    </Code>
+    <p className="c-info-bubble_p">Expected type:</p>
+    <Code
+      language="javascript"
+      style={codeStyle}
+      className="c-info-bubble_pre"
+      codeTagProps={{ className: "c-info-bubble_code" }}
+    >
+      {typeof type === "string" || type instanceof String ? type : type.name}
+    </Code>
+  </Fragment>
+);
+
+// Highlight Related
+// ======================================================
+
+// export const createKeywordHighlight = str => (
+//   <span className="c-info-bubble_highlight -keyword">{str}</span>
+// );
+// export const createNameHighlight = str => (
+//   <span className="c-info-bubble_highlight -name">{str}</span>
+// );
+// export const createStringHighlight = str => (
+//   <span className="c-info-bubble_highlight -string">{str}</span>
+// );
