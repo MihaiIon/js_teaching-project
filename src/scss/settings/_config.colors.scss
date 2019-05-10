@@ -8,9 +8,17 @@ $white: #ffffff;
 $black: #000000;
 
 $dark: lighten($black, 8%);
+
 $gray-lighter: darken($white, 15%);
 $gray-light: darken($white, 28%);
 $gray: lighten($black, 50%);
+$gray-dark: lighten($black, 28%);
+$gray-darker: lighten($black, 15%);
+
+$success: rgb(42, 182, 49);
+$success-light: #effff0;
+$danger: #ff154f;
+$danger-light: #ffdcdc;
 
 // App
 // =============================================================================

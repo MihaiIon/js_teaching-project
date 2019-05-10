@@ -2,6 +2,19 @@
 // Base / Fonts
 // ==========================================================================
 
+html,
+h1,
+h2,
+h3,
+p,
+a,
+button,
+label,
+input,
+span {
+  font-family: "Roboto", arial, sans-serif;
+}
+
 // @include font-face(
 //     $font-foobar,
 //     "fonts/Foobar/Regular"

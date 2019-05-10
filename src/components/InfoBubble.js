@@ -3,14 +3,13 @@ import React, { useState, useEffect } from "react";
 // Components
 import Fade from "react-reveal/Fade";
 import HelpIcon from "react-ionicons/lib/MdHelp";
-import { Manager, Reference } from "react-popper";
-import Tooltip from "../modules/Tooltip";
+import { Tooltip } from "react-tippy";
+
+// Helpers
+import { getCurrentStepHTML } from "../selectors";
 
 // Context
 import { AppContext } from "./App";
-
-// Helpers
-import { createFunctionDefinitionForStep } from "../helpers";
 
 // Constants
 import { INFO_BUBBLE_DELAY } from "../constants/time";
@@ -20,60 +19,34 @@ import { INFO_BUBBLE_DELAY } from "../constants/time";
 
 function InfoBubble() {
   // Hooks
-  const [state, setState] = useState({
-    isInfoBubbleVisible: false,
-    isTooltipVisible: false
-  });
+  const [isVisible, setVisibility] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(
-      () => void setState(currentState => ({ ...currentState, isInfoBubbleVisible: true })),
-      INFO_BUBBLE_DELAY
-    );
+    const timer = setTimeout(() => void setVisibility(state => !state), INFO_BUBBLE_DELAY);
     return () => clearTimeout(timer);
   }, []);
 
   // Component
   return (
     <AppContext.Consumer>
-      {() => (
-        <Manager>
-          {/* Trigger */}
-          {/* ====================================================== */}
-          <Reference>
-            {({ ref }) =>
-              state.isInfoBubbleVisible && (
-                <Fade bottom>
-                  <aside
-                    ref={ref}
-                    className="c-info-bubble"
-                    onMouseEnter={() =>
-                      setState(({ isTooltipVisible, ...rest }) => ({
-                        ...rest,
-                        isTooltipVisible: true
-                      }))
-                    }
-                    onMouseLeave={() =>
-                      setState(({ isTooltipVisible, ...rest }) => ({
-                        ...rest,
-                        isTooltipVisible: false
-                      }))
-                    }
-                  >
-                    <button className="c-info-bubble_btn" type="button">
-                      <HelpIcon className="c-info-bubble_icon" />
-                    </button>
-                  </aside>
-                </Fade>
-              )
-            }
-          </Reference>
-          {/* Tooltip */}
-          {/* ====================================================== */}
-          <Tooltip placement="left" show={state.isTooltipVisible}>
-            {createFunctionDefinitionForStep("melissa", [["name", Function], ["pipi", Number]])}
+      {({ state }) =>
+        isVisible && (
+          <Tooltip
+            arrow
+            interactive
+            className="c-info-bubble"
+            position="left"
+            html={getCurrentStepHTML(state)}
+          >
+            <Fade bottom>
+              <div className="c-info-bubble_circle">
+                <button className="c-info-bubble_btn" type="button">
+                  <HelpIcon className="c-info-bubble_icon" />
+                </button>
+              </div>
+            </Fade>
           </Tooltip>
-        </Manager>
-      )}
+        )
+      }
     </AppContext.Consumer>
   );
 }
