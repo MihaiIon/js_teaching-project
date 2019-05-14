@@ -16,6 +16,8 @@ export const APP_ACTION_TYPE = {
   SET_STEP: "APP__SET_STEP"
 };
 
+// ------------------------------------------------------
+
 const reducer = (state, action) => {
   switch (action.type) {
     case APP_ACTION_TYPE.NEXT_STEP:

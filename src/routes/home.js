@@ -1,10 +1,15 @@
 import React, { Fragment } from "react";
 
 // Components
-// import Component from "../components/...";
+import Container from "../modules/Container";
+import Form from "../modules/Form";
 
 function home() {
-  return <Fragment />;
+  return (
+    <Container>
+      <Form />
+    </Container>
+  );
 }
 
 export default home;

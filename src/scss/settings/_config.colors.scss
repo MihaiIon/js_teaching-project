@@ -23,13 +23,18 @@ $danger-light: #ffdcdc;
 // App
 // =============================================================================
 
-$main-color: #235ca7;
+$main-color: #1ccebf;
+$main-color-light: #c1fcee;
+$main-color-lighter: #f2fffb;
+$main-color-dark: #2ba69b;
+$main-color-darkest: #18726b;
 
-$bubble-color: rgb(107, 59, 134);
+$accent-color: #fc82e3;
+$accent-color-dark: darken($accent-color, 10%);
+
+$bubble-color: #16c2b0;
 $bubble-color-light: lighten($bubble-color, 20%);
 $bubble-color-dark: darken($bubble-color, 12%);
-
-$code--reserved-word-color: red;
 
 // Specific
 // =============================================================================

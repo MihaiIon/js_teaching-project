@@ -1,0 +1,47 @@
+// ======================================================
+// Modules / Form
+// ======================================================
+
+$form--radius: 4px;
+$form--input-padding: $unit / 4;
+$form--h3-size: 16px;
+$form--hr-width: 300px;
+
+.c-form {
+  width: 100%;
+}
+
+.c-form_h3 {
+  opacity: 0.5;
+  color: $main-color-dark;
+  font-size: rem($form--h3-size);
+  margin-bottom: rem($unit / 10);
+}
+
+.c-form_hr {
+  width: rem($form--hr-width);
+  margin: rem($unit / 4) auto;
+  border-color: $main-color-light;
+}
+
+.c-form_input {
+  padding: rem($form--input-padding);
+  padding-top: rem($unit / 3);
+  padding-bottom: rem($unit / 3);
+  margin-bottom: rem($unit / 4);
+  border-radius: $form--radius;
+  border: solid 1px $main-color-light;
+  background-color: $white;
+}
+
+.c-form_btn {
+  padding: rem($unit / 4) rem($unit / 1.5);
+  float: right;
+  color: $white;
+  border-radius: $form--radius;
+  background-color: $accent-color;
+  @include u-hocus {
+    background-color: $accent-color-dark;
+  }
+  transition: background-color $speed / 2 $easing;
+}

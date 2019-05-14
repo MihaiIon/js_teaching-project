@@ -18,18 +18,28 @@ import { STEP_LABEL as LABEL } from "./constants";
 // ======================================================
 
 export default {
-  title: "",
+  title: "StoryTeller",
   steps: [
     createStep(
-      LABEL.VARIABLES,
-      "Create a variable named example.",
-      createVariableDefinitionForStep("example", String),
-      ["example"],
-      ({ example }) =>
+      LABEL.VARIABLE,
+      "Create a variable (constant in this case) named PREVIEW_LENGTH. This variable will be used to determine the number of words that will be shown in the preview box.",
+      createVariableDefinitionForStep("PREVIEW_LENGTH", Number),
+      ["PREVIEW_LENGTH"],
+      ({ PREVIEW_LENGTH }) =>
         function* testFunction() {
-          yield expect(example).to.be.a("string");
+          yield expect(PREVIEW_LENGTH).to.be.a("number");
         }
     )
+    // createStep(
+    //   LABEL.FUNCTION,
+    //   "Create a variable (constant in this case) named PREVIEW_LENGTH. This variable will be used to determine the number of words that will be shown in the preview box.",
+    //   createVariableDefinitionForStep("PREVIEW_LENGTH", Number),
+    //   ["PREVIEW_LENGTH"],
+    //   ({ PREVIEW_LENGTH }) =>
+    //     function* testFunction() {
+    //       yield expect(PREVIEW_LENGTH).to.be.a("number");
+    //     }
+    // ),
   ],
   currentStep: 0
 };

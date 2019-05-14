@@ -1,0 +1,25 @@
+// ======================================================
+// Modules / Preview
+// ======================================================
+
+$preview--fragment-size: 16px;
+$preview--fragment-space-between: 10px;
+
+.c-preview {
+  margin-bottom: rem($unit / 2);
+  padding: rem($form--input-padding);
+
+  border: solid 1px lighten($main-color, 35%);
+  border-radius: $form--radius;
+  background-color: $main-color-light;
+}
+
+.c-preview_fragment {
+  display: inline-block;
+  color: $main-color-dark;
+  font-weight: bold;
+  font-size: rem($preview--fragment-size);
+  &:not(:last-child) {
+    margin-right: rem($preview--fragment-space-between);
+  }
+}

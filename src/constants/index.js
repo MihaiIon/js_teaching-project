@@ -4,5 +4,5 @@
 
 export const STEP_LABEL = {
   FUNCTION: "function",
-  VARIABLES: "variables"
+  VARIABLE: "variable"
 };

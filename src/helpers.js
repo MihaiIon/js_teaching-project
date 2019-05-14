@@ -41,7 +41,6 @@ export const processTests = generator => {
       results.push(new Validation(false, err));
     }
     if (result === null || result.done) {
-      console.log(results);
       return results;
     }
   }
@@ -91,7 +90,6 @@ class Step {
   getHTML() {
     const success = this.validations.filter(v => v.isValid);
     const fail = this.validations.filter(v => !v.isValid);
-    console.log(this.validations, fail);
     return (
       <Fragment>
         <div className="c-info-bubble_content">

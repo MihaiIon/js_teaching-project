@@ -14,14 +14,26 @@
 
 /* stylelint-disable */
 @if (type-of($container-width) != number) {
-    @error "`#{$container-width}` needs to be a number."
+  @error "`#{$container-width}` needs to be a number.";
 }
 /* stylelint-enable */
 
 .o-container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: $padding;
-    padding-left: $padding;
-    max-width: $container-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: $unit / 2;
+  @media (min-width: $from-small) {
+    width: 680px;
+    padding: 0;
+  }
+  @media (min-width: $from-large) {
+    width: 860px;
+    padding: 0;
+  }
+}
+
+.o-overlay {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }

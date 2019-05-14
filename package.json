@@ -16,6 +16,7 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "classnames-helper": "0.0.2",
+    "formik": "^1.5.4",
     "history": "^4.9.0",
     "lodash": "^4.17.11",
     "node-sass": "^4.11.0",

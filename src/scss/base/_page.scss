@@ -13,12 +13,14 @@
 // 3. Ensure the page always fills at least the entire height of the viewport.
 //
 html {
-  overflow-y: scroll; /* [2] */
-  min-height: 100%; /* [3] */
+  // overflow-y: scroll; /* [2] */
+  // min-height: 100%; /* [3] */
+  height: 100%;
+  overflow: hidden;
   color: $color;
   font-family: $font-family;
   line-height: $line-height; /* [1] */
-  background-color: $gray;
+  background-color: $white;
 
   @media (max-width: $to-small) {
     font-size: 12px;
