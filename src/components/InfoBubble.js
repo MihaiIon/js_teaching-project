@@ -48,8 +48,10 @@ function InfoBubbleWrapper() {
       {({ state, dispatch }) =>
         isVisible && (
           <Tooltip target={InfoBubble} className="c-info-bubble">
+            {/* Content */}
             {getCurrentStepHTML(state)}
-            {console.log("isCurrentStepValid(state)", isCurrentStepValid(state))}
+
+            {/* Controls */}
             <div className="o-layout">
               <button
                 className={cn("o-layout_item u-1/2", "c-info-bubble_control-btn", [

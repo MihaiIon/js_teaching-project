@@ -1,1 +1,0 @@
-var PREVIEW_LENGTH = 4;

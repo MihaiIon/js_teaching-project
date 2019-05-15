@@ -180,7 +180,7 @@ export const createFunctionStep = (
   params = [],
   returnType,
   testFunction,
-  variables
+  variables = []
 ) =>
   createStep(
     STEP_LABEL.FUNCTION,
@@ -251,7 +251,7 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
       className="c-info-bubble_pre"
       codeTagProps={{ className: "c-info-bubble_code" }}
     >
-      {returnType}
+      {returnType.name}
     </Code>
   </Fragment>
 );

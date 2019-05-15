@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { animated as a, Transition } from "react-spring/renderprops";
 
 // Components
-import Description from "./Desccription";
+import Description from "./Description";
 
 // Constants
 import { PANEL_DELAY, CONTENT_DELAY } from "../constants/time";
