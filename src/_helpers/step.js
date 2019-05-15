@@ -9,6 +9,9 @@ import { Prism as Code } from "react-syntax-highlighter";
 import ErrorIcon from "react-ionicons/lib/MdClose";
 import ValidIcon from "react-ionicons/lib/MdCheckmark";
 
+// Helpers
+import { highlightText } from "./highlight";
+
 // Constants
 import { STEP_LABEL } from "../constants";
 import { codeStyle } from "../constants/style";
@@ -53,7 +56,7 @@ export const processTests = generator => {
 class Step {
   constructor(label, description, codeDefinition, variables, testFunction) {
     this.label = label;
-    this.description = description;
+    this.description = highlightText(description);
     this.codeDefinition = codeDefinition;
     this.data = this.getData(variables);
     this.validations = this.validate(testFunction);

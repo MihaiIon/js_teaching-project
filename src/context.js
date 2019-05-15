@@ -14,7 +14,7 @@ export default {
   title: "TITLE_DEMO",
   steps: [
     createVariableStep(
-      "Descripton",
+      "Descripton $[test] **boldy** _italic_",
       "example",
       String,
       ({ example }) =>
