@@ -6,11 +6,29 @@
 // ======================================================
 
 .tippy-popper {
+  min-width: rem($info-bubble--tooltip-min-width) !important;
   max-width: rem($info-bubble--tooltip-max-width) !important;
 }
 
 .tippy-tooltip {
   padding: 0;
+}
+
+// Perfect Scrollbar
+// ======================================================
+
+.scrollbar-container {
+  max-height: 580px;
+}
+
+.ps__rail-y {
+  background-color: transparent !important;
+  left: initial !important;
+  right: 0 !important;
+}
+
+.ps__thumb-y {
+  opacity: 0.6;
 }
 
 // Info Bubble
@@ -58,13 +76,6 @@
 // Content
 // ======================================================
 
-.c-info-bubble_label {
-  margin: rem($unit / 6) 0;
-  font-size: rem($info-bubble--label-size);
-  text-align: center;
-  color: $gray;
-}
-
 .c-info-bubble_content,
 .c-info-bubble_assertions {
   text-align: left;
@@ -72,6 +83,21 @@
 
 .c-info-bubble_content {
   padding: rem($info-bubble--content-padding);
+  font-size: rem($info-bubble--content-font-size);
+}
+
+.c-info-bubble_label {
+  margin-top: rem($unit / 6);
+  margin-bottom: 0;
+  font-size: rem($info-bubble--label-size);
+  text-align: center;
+  color: $gray;
+}
+
+.c-info-bubble_hr {
+  width: rem($info-bubble--hr-size);
+  margin: rem($unit / 20) auto rem($unit / 4) auto;
+  border-color: $gray-dark;
 }
 
 .c-info-bubble_p {
@@ -85,6 +111,7 @@
 // ======================================================
 
 .c-info-bubble_assertions {
+  font-size: rem($info-bubble--content-font-size);
   padding: rem($info-bubble--content-padding * 2);
   padding-top: rem($info-bubble--content-padding);
   background-color: darken($gray-darker, 2%);
