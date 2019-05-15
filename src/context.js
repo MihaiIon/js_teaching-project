@@ -14,30 +14,12 @@ export default {
   title: "TITLE_DEMO",
   steps: [
     createVariableStep(
-      "",
+      "Descripton",
       "example",
       String,
       ({ example }) =>
         function* testFunction() {
-          yield expect(example).to.be.a("string");
-        }
-    ),
-    createVariableStep(
-      "",
-      "example2",
-      String,
-      ({ example2 }) =>
-        function* testFunction() {
-          yield expect(example2).to.be.a("string");
-        }
-    ),
-    createVariableStep(
-      "",
-      "example3",
-      String,
-      ({ example3 }) =>
-        function* testFunction() {
-          yield expect(example3).to.be.a("string");
+          yield true;
         }
     )
   ],
