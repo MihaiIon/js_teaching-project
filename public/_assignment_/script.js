@@ -1,2 +1,0 @@
-// First collaborator
-// Second collaborator

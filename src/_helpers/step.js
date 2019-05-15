@@ -10,6 +10,7 @@ import ErrorIcon from "react-ionicons/lib/MdClose";
 import ValidIcon from "react-ionicons/lib/MdCheckmark";
 
 // Helpers
+import { isString } from ".";
 import { highlightText } from "./highlight";
 
 // Constants
@@ -56,7 +57,7 @@ export const processTests = generator => {
 class Step {
   constructor(label, description, codeDefinition, variables, testFunction) {
     this.label = label;
-    this.description = highlightText(description);
+    this.description = highlightText(description, "c-info-bubble_p");
     this.codeDefinition = codeDefinition;
     this.data = this.getData(variables);
     this.validations = this.validate(testFunction);
@@ -129,22 +130,28 @@ class Step {
   /**
    * TODO
    */
-  getHTML() {
+  getAssertionsHTML() {
     return (
-      <Fragment>
-        <div className="c-info-bubble_content">
-          <h3 className="c-info-bubble_label">{this.label}</h3>
-          <hr className="c-info-bubble_hr" />
-          <p className="c-info-bubble_p">{this.description}</p>
-          {this.codeDefinition}
-        </div>
-        <div className="c-info-bubble_assertions">
-          <h3 className="c-info-bubble_label">assertions</h3>
-          <hr className="c-info-bubble_hr" />
-          {this.getSuccessfulAssertionsHTML()}
-          {this.getSFailedAssertionsHTML()}
-        </div>
-      </Fragment>
+      <div className="c-info-bubble_assertions">
+        <h3 className="c-info-bubble_label">assertions</h3>
+        <hr className="c-info-bubble_hr" />
+        {this.getSuccessfulAssertionsHTML()}
+        {this.getSFailedAssertionsHTML()}
+      </div>
+    );
+  }
+
+  /**
+   * TODO
+   */
+  getContentHTML() {
+    return (
+      <div className="c-info-bubble_content">
+        <h3 className="c-info-bubble_label">{this.label}</h3>
+        <hr className="c-info-bubble_hr" />
+        {this.description}
+        {this.codeDefinition}
+      </div>
     );
   }
 }
@@ -204,7 +211,7 @@ export const createFunctionStep = (
   params = [],
   returnType,
   testFunction,
-  variables
+  variables = []
 ) =>
   createStep(
     STEP_LABEL.FUNCTION,
@@ -238,7 +245,7 @@ export const createVariableDefinitionForStep = (name, type) => (
       className="c-info-bubble_pre"
       codeTagProps={{ className: "c-info-bubble_code" }}
     >
-      {typeof type === "string" || type instanceof String ? type : type.name}
+      {isString(type) ? type : type.name}
     </Code>
   </Fragment>
 );
@@ -261,10 +268,10 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
       codeTagProps={{ className: "c-info-bubble_code" }}
     >
       {[
-        `function ${name} (${params
-          .map(([pName, pType]) => `${pName} : ${pType.name}`)
-          .join(", ")}) {`,
-        "\t// ...",
+        `function ${name} (\n  ${params
+          .map(([pName, pType]) => `${pName} : ${isString(pType) ? pType : pType.name}`)
+          .join(",\n    ")}\n) {`,
+        "    // ...",
         "}"
       ].join("\n")}
     </Code>
@@ -275,7 +282,7 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
       className="c-info-bubble_pre"
       codeTagProps={{ className: "c-info-bubble_code" }}
     >
-      {returnType}
+      {isString(returnType) ? returnType : returnType.name}
     </Code>
   </Fragment>
 );

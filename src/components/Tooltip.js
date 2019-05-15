@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 // Components
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Tooltip } from "react-tippy";
 
-function TooltipWrapper({ className, children, target: Target }) {
+function TooltipWrapper({ className, children, target: Target, scrollableContent }) {
   const scrollbarOptions = {
     suppressScrollX: true,
     scrollYMarginOffset: 20
@@ -16,7 +16,14 @@ function TooltipWrapper({ className, children, target: Target }) {
       arrowSize="big"
       position="left"
       className={className}
-      html={<PerfectScrollbar options={scrollbarOptions}>{children}</PerfectScrollbar>}
+      html={
+        <Fragment>
+          {scrollableContent !== null && (
+            <PerfectScrollbar options={scrollbarOptions}>{scrollableContent}</PerfectScrollbar>
+          )}
+          {children}
+        </Fragment>
+      }
       interactiveBorder={20}
       interactive
     >
@@ -26,13 +33,16 @@ function TooltipWrapper({ className, children, target: Target }) {
 }
 
 TooltipWrapper.defaultProps = {
-  className: ""
+  className: "",
+  children: null,
+  scrollableContent: null
 };
 
 TooltipWrapper.propTypes = {
   className: PropTypes.string,
   target: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node,
+  scrollableContent: PropTypes.node
 };
 
 export default TooltipWrapper;
