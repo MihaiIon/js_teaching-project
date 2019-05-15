@@ -18,7 +18,7 @@
 // ======================================================
 
 .scrollbar-container {
-  max-height: 580px;
+  max-height: 550px;
 }
 
 .ps__rail-y {
@@ -87,7 +87,6 @@
 }
 
 .c-info-bubble_label {
-  margin-top: rem($unit / 6);
   margin-bottom: 0;
   font-size: rem($info-bubble--label-size);
   text-align: center;

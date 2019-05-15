@@ -72,10 +72,10 @@ const createItalicSpan = str => createSpan(str, "-italic");
 // Regex
 // ======================================================
 
-const mainRegex = /\$\[([a-zA-Z0-9*_]+)\]/g;
-const accentRegex = /\$\$\[([a-zA-Z0-9*_]+)\]/g;
-const boldRegex = /\*\*([a-zA-Z0-9]+)\*\*/g;
-const italicRegex = /_([a-zA-Z0-9*]+)_/g;
+const mainRegex = /\$\[([ a-zA-Z0-9*-+_ ]+)\]/g;
+const accentRegex = /\$\$\[([ a-zA-Z0-9*-+_ ]+)\]/g;
+const boldRegex = /\*\*([a-zA-Z0-9-+_ ]+)\*\*/g;
+const italicRegex = /_([a-zA-Z0-9-+ ]+)_/g;
 
 // Parse Syntaxe
 // ======================================================
@@ -85,6 +85,7 @@ const italicRegex = /_([a-zA-Z0-9*]+)_/g;
  * @param {String} str Raw text
  */
 const highlightParser = str => {
+  console.log(str);
   return flatten(
     flatten(
       str
@@ -121,7 +122,9 @@ const highlightParser = str => {
 export const highlightText = (obj = "", className = "o-p") => {
   if (isString(obj)) return <p className={className}>{highlightParser(obj)}</p>;
   if (obj instanceof Array) {
-    return obj.filter(o => isString(obj)).map(highlightParser);
+    return obj
+      .filter(o => isString(o))
+      .map(str => <p className={className}>{highlightParser(str)}</p>);
   }
   return null;
 };

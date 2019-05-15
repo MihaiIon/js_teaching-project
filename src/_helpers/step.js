@@ -56,7 +56,7 @@ export const processTests = generator => {
 class Step {
   constructor(label, description, codeDefinition, variables, testFunction) {
     this.label = label;
-    this.description = highlightText(description);
+    this.description = highlightText(description, "c-info-bubble_p");
     this.codeDefinition = codeDefinition;
     this.data = this.getData(variables);
     this.validations = this.validate(testFunction);
@@ -135,7 +135,7 @@ class Step {
         <div className="c-info-bubble_content">
           <h3 className="c-info-bubble_label">{this.label}</h3>
           <hr className="c-info-bubble_hr" />
-          <p className="c-info-bubble_p">{this.description}</p>
+          {this.description}
           {this.codeDefinition}
         </div>
         <div className="c-info-bubble_assertions">
@@ -261,10 +261,15 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
       codeTagProps={{ className: "c-info-bubble_code" }}
     >
       {[
-        `function ${name} (${params
-          .map(([pName, pType]) => `${pName} : ${pType.name}`)
-          .join(", ")}) {`,
-        "\t// ...",
+        `function ${name} (\n  ${params
+          .map(
+            ([pName, pType]) =>
+              `${pName} : ${
+                typeof pType === "string" || pType instanceof String ? pType : pType.name
+              }`
+          )
+          .join(",\n    ")}\n) {`,
+        "    // ...",
         "}"
       ].join("\n")}
     </Code>
@@ -275,7 +280,9 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
       className="c-info-bubble_pre"
       codeTagProps={{ className: "c-info-bubble_code" }}
     >
-      {returnType.name}
+      {typeof returnType === "string" || returnType instanceof String
+        ? returnType
+        : returnType.name}
     </Code>
   </Fragment>
 );
