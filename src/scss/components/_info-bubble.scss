@@ -18,7 +18,7 @@
 // ======================================================
 
 .scrollbar-container {
-  max-height: 550px;
+  max-height: rem($info-bubble--scrollbar-height);
 }
 
 .ps__rail-y {

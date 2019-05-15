@@ -8,7 +8,7 @@ import uniqid from "uniqid";
 // Helper
 // ======================================================
 
-const isString = obj => typeof obj === "string" || obj instanceof String;
+import { isString } from ".";
 
 const flatten = array =>
   array.reduce(

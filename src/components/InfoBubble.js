@@ -9,7 +9,7 @@ import PreviousIcon from "react-ionicons/lib/IosArrowBack";
 import Tooltip from "./Tooltip";
 
 // Helpers
-import { getCurrentStepHTML, isCurrentStepValid, isFirstStep, isLastStep } from "../selectors";
+import { getCurrentStep, isCurrentStepValid, isFirstStep, isLastStep } from "../selectors";
 
 // Context
 import { AppContext, nextStepAction, previousStepAction } from "./App";
@@ -35,8 +35,12 @@ function InfoBubbleWrapper() {
   return (
     <AppContext.Consumer>
       {({ state, dispatch }) => (
-        <Tooltip target={InfoBubble} className="c-info-bubble">
-          {getCurrentStepHTML(state)}
+        <Tooltip
+          target={InfoBubble}
+          scrollableContent={getCurrentStep(state).getContentHTML()}
+          className="c-info-bubble"
+        >
+          {getCurrentStep(state).getAssertionsHTML()}
           <div className="o-layout">
             <button
               className={cn("o-layout_item u-1/2", "c-info-bubble_control-btn", [

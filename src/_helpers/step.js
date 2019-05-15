@@ -10,6 +10,7 @@ import ErrorIcon from "react-ionicons/lib/MdClose";
 import ValidIcon from "react-ionicons/lib/MdCheckmark";
 
 // Helpers
+import { isString } from ".";
 import { highlightText } from "./highlight";
 
 // Constants
@@ -129,22 +130,28 @@ class Step {
   /**
    * TODO
    */
-  getHTML() {
+  getAssertionsHTML() {
     return (
-      <Fragment>
-        <div className="c-info-bubble_content">
-          <h3 className="c-info-bubble_label">{this.label}</h3>
-          <hr className="c-info-bubble_hr" />
-          {this.description}
-          {this.codeDefinition}
-        </div>
-        <div className="c-info-bubble_assertions">
-          <h3 className="c-info-bubble_label">assertions</h3>
-          <hr className="c-info-bubble_hr" />
-          {this.getSuccessfulAssertionsHTML()}
-          {this.getSFailedAssertionsHTML()}
-        </div>
-      </Fragment>
+      <div className="c-info-bubble_assertions">
+        <h3 className="c-info-bubble_label">assertions</h3>
+        <hr className="c-info-bubble_hr" />
+        {this.getSuccessfulAssertionsHTML()}
+        {this.getSFailedAssertionsHTML()}
+      </div>
+    );
+  }
+
+  /**
+   * TODO
+   */
+  getContentHTML() {
+    return (
+      <div className="c-info-bubble_content">
+        <h3 className="c-info-bubble_label">{this.label}</h3>
+        <hr className="c-info-bubble_hr" />
+        {this.description}
+        {this.codeDefinition}
+      </div>
     );
   }
 }
@@ -238,7 +245,7 @@ export const createVariableDefinitionForStep = (name, type) => (
       className="c-info-bubble_pre"
       codeTagProps={{ className: "c-info-bubble_code" }}
     >
-      {typeof type === "string" || type instanceof String ? type : type.name}
+      {isString(type) ? type : type.name}
     </Code>
   </Fragment>
 );
@@ -262,12 +269,7 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
     >
       {[
         `function ${name} (\n  ${params
-          .map(
-            ([pName, pType]) =>
-              `${pName} : ${
-                typeof pType === "string" || pType instanceof String ? pType : pType.name
-              }`
-          )
+          .map(([pName, pType]) => `${pName} : ${isString(pType) ? pType : pType.name}`)
           .join(",\n    ")}\n) {`,
         "    // ...",
         "}"
@@ -280,9 +282,7 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
       className="c-info-bubble_pre"
       codeTagProps={{ className: "c-info-bubble_code" }}
     >
-      {typeof returnType === "string" || returnType instanceof String
-        ? returnType
-        : returnType.name}
+      {isString(returnType) ? returnType : returnType.name}
     </Code>
   </Fragment>
 );

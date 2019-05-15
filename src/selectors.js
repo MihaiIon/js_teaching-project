@@ -5,7 +5,7 @@
 // App
 // ======================================================
 
-export const getCurrentStepHTML = ({ steps, currentStep }) => steps[currentStep].getHTML();
+export const getCurrentStep = ({ steps, currentStep }) => steps[currentStep];
 export const isCurrentStepValid = ({ steps, currentStep }) =>
   steps[currentStep].validations
     .map(v => v.isValid)
