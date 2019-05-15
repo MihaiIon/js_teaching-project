@@ -5,31 +5,42 @@
 import { expect } from "chai";
 
 // Helper
-import {
-  createStep,
-  createVariableDefinitionForStep,
-  createFunctionDefinitionForStep
-} from "./helpers";
-
-// Constants
-import { STEP_LABEL as LABEL } from "./constants";
+import { createVariableStep, createFunctionStep } from "./helpers";
 
 // Export
 // ======================================================
 
 export default {
-  title: "",
+  title: "TITLE_DEMO",
   steps: [
-    createStep(
-      LABEL.VARIABLES,
-      "Create a variable named example.",
-      createVariableDefinitionForStep("example", String),
-      ["example"],
+    createVariableStep(
+      "",
+      "example",
+      String,
       ({ example }) =>
         function* testFunction() {
           yield expect(example).to.be.a("string");
         }
+    ),
+    createVariableStep(
+      "",
+      "example2",
+      String,
+      ({ example2 }) =>
+        function* testFunction() {
+          yield expect(example2).to.be.a("string");
+        }
+    ),
+    createVariableStep(
+      "",
+      "example3",
+      String,
+      ({ example3 }) =>
+        function* testFunction() {
+          yield expect(example3).to.be.a("string");
+        }
     )
   ],
-  currentStep: 0
+  currentStep: 0,
+  copyrights: `Your Name © ${new Date().getFullYear()}  | your.email@domain.com`
 };

@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 // Components
+import Main from "../components/Main";
 // import Component from "../components/...";
 
 function home() {
-  return <Fragment />;
+  return <Main>Content goes here</Main>;
 }
 
 export default home;

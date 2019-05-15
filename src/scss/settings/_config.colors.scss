@@ -9,11 +9,11 @@ $black: #000000;
 
 $dark: lighten($black, 8%);
 
-$gray-lighter: darken($white, 15%);
-$gray-light: darken($white, 28%);
-$gray: lighten($black, 50%);
-$gray-dark: lighten($black, 28%);
 $gray-darker: lighten($black, 15%);
+$gray-dark: lighten($black, 28%);
+$gray: lighten($black, 50%);
+$gray-light: darken($white, 28%);
+$gray-lighter: darken($white, 15%);
 
 $success: rgb(42, 182, 49);
 $success-light: #effff0;
@@ -23,7 +23,13 @@ $danger-light: #ffdcdc;
 // App
 // =============================================================================
 
+$main-color-darker: #235ca7;
+$main-color-dark: #235ca7;
 $main-color: #235ca7;
+$main-color-light: #235ca7;
+$main-color-lighter: #235ca7;
+
+$accent-color: #235ca7;
 
 $bubble-color: rgb(107, 59, 134);
 $bubble-color-light: lighten($bubble-color, 20%);

@@ -10,6 +10,7 @@ import ErrorIcon from "react-ionicons/lib/MdClose";
 import ValidIcon from "react-ionicons/lib/MdCheckmark";
 
 // Constants
+import { STEP_LABEL } from "./constants";
 import { codeStyle } from "./constants/style";
 
 // Step Related
@@ -41,7 +42,6 @@ export const processTests = generator => {
       results.push(new Validation(false, err));
     }
     if (result === null || result.done) {
-      console.log(results);
       return results;
     }
   }
@@ -63,7 +63,7 @@ class Step {
    * Provides an object that contains the value of each 'variable' in the the first argument
    * received by this function. If a variable hasn't been declared, its value in the returned
    * object will be 'null'.
-   * @param {[String]} variables Array of variables name that should be available in the global scope
+   * @param {String[]} variables Array of variables name that should be available in the global scope
    */
   getData(variables) {
     if (window && typeof window === "object") {
@@ -74,7 +74,7 @@ class Step {
       }
       return data;
     }
-    throw new Error("Step | getData | Window object is missing");
+    throw new Error("Step|getData|Window object is missing");
   }
 
   /**
@@ -91,7 +91,6 @@ class Step {
   getHTML() {
     const success = this.validations.filter(v => v.isValid);
     const fail = this.validations.filter(v => !v.isValid);
-    console.log(this.validations, fail);
     return (
       <Fragment>
         <div className="c-info-bubble_content">
@@ -129,10 +128,10 @@ class Step {
 /**
  * TODO
  * @param {String} label See -> constants/index.js#STEP_LABEL
- * @param {String | ReactElement} description A text that describes the step
- * @param {ReactElement} codeDefinition See -> helpers.js#create*ForStep()
- * @param {[String]} variables Array of variables name that should be available in the global scope
- * @param {Function} testFunction See -> helpers.js#createTestFunction()
+ * @param {String|ReactElement} description A text that describes the step
+ * @param {ReactElement} [codeDefinition=null] See -> helpers.js#create*ForStep()
+ * @param {String[]} [variables=[]] Array of variables name that should be available in the global scope
+ * @param {Function} [testFunction=null] See -> helpers.js#createTestFunction()
  */
 export const createStep = (
   label,
@@ -142,20 +141,91 @@ export const createStep = (
   testFunction = null
 ) => {
   if (variables.length === 0) {
-    throw new Error("createStep | No variables where provided");
+    throw new Error("createStep|No variables where provided");
   } else if (!testFunction) {
-    throw new Error("createStep | The argument 'testFunction' is undefined");
+    throw new Error("createStep|The argument 'testFunction' is undefined");
   }
   return new Step(label, description, codeDefinition, variables, testFunction);
 };
+
+/**
+ * TODO
+ * @param {String|ReactElement} description A text that describes the step
+ * @param {String} name Variable's name
+ * @param {Object} expectedType Variable's type
+ * @param {Function} testFunction See -> helpers.js#createTestFunction()
+ * @param {String[]} [variables=[name]] Array of variables name that will be used in the test function. If no array is provided, an array with the **step variable** will be created.
+ */
+export const createVariableStep = (description, name, expectedType, testFunction, variables = []) =>
+  createStep(
+    STEP_LABEL.VARIABLE,
+    description,
+    createVariableDefinitionForStep(name, expectedType),
+    variables.length === 0 ? [name] : variables,
+    testFunction
+  );
+
+/**
+ * TODO
+ * @param {String|ReactElement} description A text that describes the step
+ * @param {String} name Function's name
+ * @param {[String, Object][]} [params=[]] Function's parameters, ex: [[message, String], [count, Number], ...]
+ * @param {String} returnType Function's return type, ex: String, Number, [Function], "void" etc.
+ * @param {Function} testFunction See -> helpers.js#createTestFunction()
+ * @param {String[]} [variables=[name]] Array of variables name that will be used in the test function. If no array is provided, an array with the **step variable** will be created.
+ */
+export const createFunctionStep = (
+  description,
+  name,
+  params = [],
+  returnType,
+  testFunction,
+  variables
+) =>
+  createStep(
+    STEP_LABEL.FUNCTION,
+    description,
+    createFunctionDefinitionForStep(name, params, returnType),
+    variables.length === 0 ? [name] : variables,
+    testFunction
+  );
+
+// ------------------------------------------------------
+
+/**
+ * TODO
+ * @param {String} name Variable's name
+ * @param {Object} type Expected type of the variable
+ */
+export const createVariableDefinitionForStep = (name, type) => (
+  <Fragment>
+    <Code
+      language="javascript"
+      style={codeStyle}
+      className="c-info-bubble_pre"
+      codeTagProps={{ className: "c-info-bubble_code" }}
+    >
+      {`var ${name} = ... ;`}
+    </Code>
+    <p className="c-info-bubble_p">Expected type:</p>
+    <Code
+      language="javascript"
+      style={codeStyle}
+      className="c-info-bubble_pre"
+      codeTagProps={{ className: "c-info-bubble_code" }}
+    >
+      {typeof type === "string" || type instanceof String ? type : type.name}
+    </Code>
+  </Fragment>
+);
 
 // ------------------------------------------------------
 
 /**
  * TODO
  * @param {String} name Function's name
- * @param {[[String, Object]]} params Function's parameters, ex: [[message, String], [count, Number], ...]
- * @param {String} returnType Function's return type, ex: String, Number, [Function], "void" etc.
+ * @param {[String, Object][]} [params=[]] Function's parameters, ex: [[message, String], [count, Number], ...]
+ * @param {String} [returnType="void"] Function's return type, ex: String, Number, [Function], "void" etc.
  */
 export const createFunctionDefinitionForStep = (name, params = [], returnType = "void") => (
   <Fragment>
@@ -185,45 +255,3 @@ export const createFunctionDefinitionForStep = (name, params = [], returnType = 
     </Code>
   </Fragment>
 );
-
-// ------------------------------------------------------
-
-/**
- * TODO
- * @param {String} name Variable's name
- * @param {String | Object} type Expected type of the variable
- */
-export const createVariableDefinitionForStep = (name, type) => (
-  <Fragment>
-    <Code
-      language="javascript"
-      style={codeStyle}
-      className="c-info-bubble_pre"
-      codeTagProps={{ className: "c-info-bubble_code" }}
-    >
-      {`var ${name} = ... ;`}
-    </Code>
-    <p className="c-info-bubble_p">Expected type:</p>
-    <Code
-      language="javascript"
-      style={codeStyle}
-      className="c-info-bubble_pre"
-      codeTagProps={{ className: "c-info-bubble_code" }}
-    >
-      {typeof type === "string" || type instanceof String ? type : type.name}
-    </Code>
-  </Fragment>
-);
-
-// Highlight Related
-// ======================================================
-
-// export const createKeywordHighlight = str => (
-//   <span className="c-info-bubble_highlight -keyword">{str}</span>
-// );
-// export const createNameHighlight = str => (
-//   <span className="c-info-bubble_highlight -name">{str}</span>
-// );
-// export const createStringHighlight = str => (
-//   <span className="c-info-bubble_highlight -string">{str}</span>
-// );

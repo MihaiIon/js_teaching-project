@@ -1,0 +1,24 @@
+// ======================================================
+// Components / Text-highlight
+// ======================================================
+
+.c-text-highlight {
+  display: inline-block;
+  margin: 0 4px;
+  &.-main,
+  &.-accent {
+    font-weight: bold;
+  }
+  &.-main {
+    color: $main-color;
+  }
+  &.-accent {
+    color: $accent-color;
+  }
+  &.-bold {
+    font-weight: bold;
+  }
+  &.-italic {
+    font-style: italic;
+  }
+}

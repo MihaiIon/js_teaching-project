@@ -7,4 +7,4 @@ export const SPEED = 300;
 // Components
 // ======================================================
 
-export const INFO_BUBBLE_DELAY = 1800;
+export const INFO_BUBBLE_DELAY = 2500;

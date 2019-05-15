@@ -5,13 +5,15 @@
 // Info Bubble
 // ======================================================
 
-$info-bubble--tooltip-max-width: 650px;
+$info-bubble--tooltip-max-width: 450px;
 
 $info-bubble--offset: 40px;
 $info-bubble--outer-padding: 4px;
 $info-bubble--inner-padding: 8px;
 $info-bubble--icon-size: 16px;
 
-$info-bubble--content-padding: 15px;
+$info-bubble--content-padding: 20px;
 $info-bubble--label-size: 15px;
 $info-bubble--assertion-icon-size: 18px;
+
+$info-bubble--control-btn-icon-size: 28px;

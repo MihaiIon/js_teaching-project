@@ -74,12 +74,6 @@
   padding: rem($info-bubble--content-padding);
 }
 
-.c-info-bubble_assertions {
-  padding: rem($info-bubble--content-padding * 2);
-  padding-top: rem($info-bubble--content-padding);
-  background-color: darken($gray-darker, 2%);
-}
-
 .c-info-bubble_p {
   text-align: left;
   font-weight: $light;
@@ -87,9 +81,13 @@
   padding: 0 rem($unit / 4);
 }
 
-.c-info-bubble_highlight {
-  font-weight: bold;
-  font-size: rem($font-size * 1.05);
+// Assertions
+// ======================================================
+
+.c-info-bubble_assertions {
+  padding: rem($info-bubble--content-padding * 2);
+  padding-top: rem($info-bubble--content-padding);
+  background-color: darken($gray-darker, 2%);
 }
 
 .c-info-bubble_assertions_icon,
@@ -115,4 +113,36 @@
   &.-error {
     color: $danger-light;
   }
+}
+
+// Controls
+// ======================================================
+
+.c-info-bubble_control-btn {
+  cursor: pointer;
+  padding: $unit / 6 0;
+
+  &:first-child {
+    border-right: solid $bubble-color-dark 1px;
+  }
+
+  background-color: $bubble-color;
+  &:hover {
+    background-color: $bubble-color-dark;
+  }
+  &.-disabled,
+  &.-disabled:hover {
+    cursor: default;
+    color: $gray-dark;
+    background-color: $gray-darker;
+    &:first-child {
+      border-right-color: $dark;
+    }
+  }
+  transition: background-color $speed / 2 $easing;
+}
+
+.c-info-bubble_control-btn_icon {
+  width: rem($info-bubble--control-btn-icon-size);
+  height: rem($info-bubble--control-btn-icon-size);
 }
