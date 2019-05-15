@@ -42,13 +42,17 @@
 @import "objects/layout";
 @import "objects/form";
 @import "objects/button";
+@import "objects/overlay";
 @import "objects/pjax";
 @import "objects/scroll";
 
 // Components
 // ==========================================================================
 // @import "components/component";
+@import "components/footer";
 @import "components/info-bubble.scss";
+@import "components/main";
+@import "components/text-highlight";
 
 // Components
 // ======================================================

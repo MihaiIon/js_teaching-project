@@ -82,45 +82,6 @@
     "prefix": "cdp",
     "body": ["${1:${TM_FILENAME_BASE}}.defaultProps = {$0};"]
   },
-  "React | Component Did Mount": {
-    "scope": "javascript",
-    "prefix": "cdm",
-    "body": "componentDidMount() {\n\t$0\n}\n",
-    "description": "Invoked once, only on the client (not on the server), immediately after the initial rendering occurs."
-  },
-  "React | Should Component Update": {
-    "scope": "javascript",
-    "prefix": "scu",
-    "body": "shouldComponentUpdate(nextProps, nextState) {\n\t$0\n}\n",
-    "description": "Invoked before rendering when new props or state are being received. "
-  },
-  "React | Component Did Update": {
-    "scope": "javascript",
-    "prefix": "cdup",
-    "body": "componentDidUpdate(prevProps, prevState) {\n\t$0\n}\n",
-    "description": "Invoked immediately after the component's updates are flushed to the DOM."
-  },
-  "React | Component Will Unmount": {
-    "scope": "javascript",
-    "prefix": "cwun",
-    "body": "componentWillUnmount() {\n\t$0\n}\n",
-    "description": "Invoked immediately before a component is unmounted from the DOM."
-  },
-  "Redux | Dispatch": {
-    "scope": "javascript",
-    "prefix": "dispatch",
-    "body": "dispatch(${1:action}($0))"
-  },
-  "Redux | Map State to Props": {
-    "scope": "javascript",
-    "prefix": "maps",
-    "body": "const mapStateToProps = ({ $1 }) => ({$0});"
-  },
-  "Redux | Map Dispatch to Props": {
-    "scope": "javascript",
-    "prefix": "mapd",
-    "body": "const mapDispatchToProps = dispatch => ({$0});"
-  },
   "propTypeArray": {
     "scope": "javascript",
     "prefix": "pta",
@@ -301,22 +262,39 @@
     "body": "PropTypes.shape({\n\t$0\n}).isRequired,",
     "description": "An object taking on a particular shape required"
   },
-  "React | Get Component Modifiers": {
+  "Project | Create Variable Step": {
     "scope": "javascript",
-    "prefix": "gccn",
-    "body": "getComponentClassNames() {\n\t$0\n}"
+    "prefix": "cvstep",
+    "body": [
+      "createVariableStep(\n\t\"${1:Description}\",",
+      "\t\"${2:variableName}\",\n\t${3:Type},",
+      "\t({ ${2:variableName} }) =>",
+      "\t\tfunction* testFunction() {",
+      "\t\t\tyield expect(${2:variableName}).to.be.a(\"{4:type...}\");\n\t\t}\n),$0"
+    ]
+  },
+  "Project | Create Function Step": {
+    "scope": "javascript",
+    "prefix": "cfstep",
+    "body": [
+      "createFunctionStep(\n\t\"${1:Description}\",",
+      "\t\"${2:functionName}\",\n\t${5:null|[[\"firstParamName\", FirstParamType]]},\n\t${3:ReturnType},",
+      "\t({ ${2:functionName} }) =>",
+      "\t\tfunction* testFunction() {",
+      "\t\t\tyield expect(${2:functionName}).to.be.a(\"{4:returnType...}\");\n\t\t}\n),$0"
+    ]
   },
   "Template | React Component": {
     "scope": "javascript",
     "prefix": "t_component",
     "body": [
-      "import React, { useState, useContext } from \"react\";",
+      "import React${7:, { useState, useEffect \\}} from \"react\";",
       "import PropTypes from \"prop-types\";\n",
-      "function ${1:${TM_FILENAME_BASE}} (props) {",
+      "function ${1:${TM_FILENAME_BASE}} (${5:props}) {",
       "\treturn (",
       "\t\t<${4:div} className=\"${3:c}-$2\">\n\t\t\t$0\n\t\t</${4:div}>",
       "\t);\n}\n",
-      "${1:${TM_FILENAME_BASE}}.propTypes = {};\n",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {$6};\n",
       "export default ${1:${TM_FILENAME_BASE}};\n"
     ]
   }

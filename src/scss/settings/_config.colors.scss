@@ -9,11 +9,11 @@ $black: #000000;
 
 $dark: lighten($black, 8%);
 
-$gray-lighter: darken($white, 15%);
-$gray-light: darken($white, 28%);
-$gray: lighten($black, 50%);
-$gray-dark: lighten($black, 28%);
 $gray-darker: lighten($black, 15%);
+$gray-dark: lighten($black, 28%);
+$gray: lighten($black, 50%);
+$gray-light: darken($white, 28%);
+$gray-lighter: darken($white, 15%);
 
 $success: rgb(42, 182, 49);
 $success-light: #effff0;
@@ -28,6 +28,8 @@ $main-color-light: #c1fcee;
 $main-color-lighter: #f2fffb;
 $main-color-dark: #2ba69b;
 $main-color-darkest: #18726b;
+
+$accent-color: #235ca7;
 
 $accent-color: #fc82e3;
 $accent-color-dark: darken($accent-color, 10%);

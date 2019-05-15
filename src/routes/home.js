@@ -1,14 +1,23 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 // Components
-import Container from "../modules/Container";
+// import Component from "../components/...";
+import Main from "../components/Main";
 import Form from "../modules/Form";
+import Description from "../modules/Description";
 
 function home() {
   return (
-    <Container>
-      <Form />
-    </Container>
+    <Main>
+      <div className="o-layout">
+        <div className="o-layout_item u-1/2">
+          <Description />
+        </div>
+        <div className="o-layout_item u-1/2">
+          <Form />
+        </div>
+      </div>
+    </Main>
   );
 }
 
