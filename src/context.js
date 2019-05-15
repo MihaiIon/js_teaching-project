@@ -5,7 +5,7 @@
 import { expect } from "chai";
 
 // Helper
-import { createVariableStep, createFunctionStep } from "./helpers";
+import { createVariableStep, createFunctionStep } from "./_helpers/step";
 
 // Export
 // ======================================================

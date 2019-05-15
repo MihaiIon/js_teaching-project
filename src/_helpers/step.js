@@ -1,5 +1,5 @@
 // ======================================================
-// Helpers
+// Helpers / Step
 // ======================================================
 
 import React, { Fragment } from "react";
@@ -10,8 +10,8 @@ import ErrorIcon from "react-ionicons/lib/MdClose";
 import ValidIcon from "react-ionicons/lib/MdCheckmark";
 
 // Constants
-import { STEP_LABEL } from "./constants";
-import { codeStyle } from "./constants/style";
+import { STEP_LABEL } from "../constants";
+import { codeStyle } from "../constants/style";
 
 // Step Related
 // ======================================================
@@ -85,40 +85,61 @@ class Step {
     return processTests(testFunction(this.data));
   }
 
+  getSuccessfulAssertionsHTML() {
+    const success = this.validations.filter(v => v.isValid);
+    const Message = ({ children }) => (
+      <span className="c-info-bubble_assertions_message">{children}</span>
+    );
+    return (
+      success.length > 0 && (
+        <div>
+          <ValidIcon className="c-info-bubble_assertions_icon" color="current" />
+          {success.length === this.validations.length ? (
+            <Message>
+              Passed <b>all</b> tests
+            </Message>
+          ) : (
+            <Message>
+              Passed <b>{success.length}</b> of <b>{this.validations.length}</b> tests
+            </Message>
+          )}
+        </div>
+      )
+    );
+  }
+
+  getSFailedAssertionsHTML() {
+    const fail = this.validations.filter(v => !v.isValid);
+    return (
+      fail.length > 0 && (
+        <div>
+          <span className="c-info-bubble_assertions_message -error">
+            <ErrorIcon className="c-info-bubble_assertions_icon -error" color="current" />
+            <strong>Failed</strong>
+            {`: ${fail[0].error.message.charAt(0).toUpperCase()}${fail[0].error.message.slice(1)}`}
+          </span>
+        </div>
+      )
+    );
+  }
+
   /**
    * TODO
    */
   getHTML() {
-    const success = this.validations.filter(v => v.isValid);
-    const fail = this.validations.filter(v => !v.isValid);
     return (
       <Fragment>
         <div className="c-info-bubble_content">
           <h3 className="c-info-bubble_label">{this.label}</h3>
+          <hr className="c-info-bubble_hr" />
           <p className="c-info-bubble_p">{this.description}</p>
           {this.codeDefinition}
         </div>
         <div className="c-info-bubble_assertions">
           <h3 className="c-info-bubble_label">assertions</h3>
-          {success.length > 0 && (
-            <div>
-              <ValidIcon className="c-info-bubble_assertions_icon" color="current" />
-              <span className="c-info-bubble_assertions_message">
-                Passed <strong>{success.length}</strong> test(s)
-              </span>
-            </div>
-          )}
-          {fail.length > 0 && (
-            <div>
-              <ErrorIcon className="c-info-bubble_assertions_icon -error" color="current" />
-              <span className="c-info-bubble_assertions_message -error">
-                <strong>Failed</strong>
-                {`: ${fail[0].error.message.charAt(0).toUpperCase()}${fail[0].error.message.slice(
-                  1
-                )}`}
-              </span>
-            </div>
-          )}
+          <hr className="c-info-bubble_hr" />
+          {this.getSuccessfulAssertionsHTML()}
+          {this.getSFailedAssertionsHTML()}
         </div>
       </Fragment>
     );
