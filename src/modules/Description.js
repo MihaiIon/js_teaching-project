@@ -2,7 +2,7 @@ import React from "react";
 
 function Desccription(props) {
   return (
-    <div>
+    <div className="c-description">
       <h1 className="o-h1">StoryTeller</h1>
       <p className="o-p">This game requires 2 or more players.</p>
       <p className="o-p">

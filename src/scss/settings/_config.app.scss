@@ -7,11 +7,19 @@
 
 $footer--font-size: 12px;
 
+// Form
+// ======================================================
+
+$form--radius: 4px;
+$form--input-padding: $unit / 4;
+$form--h3-size: 16px;
+$form--hr-width: 300px;
+
 // Info Bubble
 // ======================================================
 
-$info-bubble--tooltip-min-width: 400px;
-$info-bubble--tooltip-max-width: 540px;
+$info-bubble--tooltip-min-width: 350px;
+$info-bubble--tooltip-max-width: 420px;
 
 $info-bubble--scrollbar-height: 340px;
 

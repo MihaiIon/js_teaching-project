@@ -2,13 +2,9 @@
 // Modules / Form
 // ======================================================
 
-$form--radius: 4px;
-$form--input-padding: $unit / 4;
-$form--h3-size: 16px;
-$form--hr-width: 300px;
-
 .c-form {
   width: 100%;
+  padding-left: rem($unit / 2);
 }
 
 .c-form_h3 {
