@@ -2,22 +2,12 @@
 // Base / Page
 // ==========================================================================
 
-//
-// Simple page-level setup.
-//
-// 1. Set the default `font-size` and `line-height` for the entire project,
-//    sourced from our default variables.
-// 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
-//    navigating between pages that do/do not have enough content to produce
-//    scrollbars naturally.
-// 3. Ensure the page always fills at least the entire height of the viewport.
-//
 html {
-  overflow-y: scroll; /* [2] */
-  min-height: 100%; /* [3] */
+  overflow: hidden;
+  height: 100%;
   color: $color;
   font-family: $font-family;
-  line-height: $line-height; /* [1] */
+  line-height: $line-height;
   background-color: $gray;
 
   @media (max-width: $to-small) {
@@ -47,6 +37,11 @@ html {
   @media (min-width: $from-colossal) {
     font-size: 24px;
   }
+}
+
+html,
+main {
+  min-width: 900px;
 }
 
 ::selection {
