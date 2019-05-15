@@ -8,7 +8,7 @@ html {
   color: $color;
   font-family: $font-family;
   line-height: $line-height;
-  background-color: $gray;
+  background-color: $main-color-lighter;
 
   @media (max-width: $to-small) {
     font-size: 12px;
