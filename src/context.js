@@ -33,9 +33,10 @@ export default {
       ({ isEnoughWordsInSentence }) =>
         function* testFunction() {
           yield expect(isEnoughWordsInSentence).to.be.a("function");
+          yield expect(isEnoughWordsInSentence("", 3)).to.be.a("boolean");
           yield expect(isEnoughWordsInSentence("", 3)).to.equal(false);
-          yield expect(isEnoughWordsInSentence("test test test", 3)).to.equal(false);
-          yield expect(isEnoughWordsInSentence("test test test", 2)).to.equal(true);
+          yield expect(isEnoughWordsInSentence("Testing this function.", 3)).to.equal(false);
+          yield expect(isEnoughWordsInSentence("Testing this function.", 2)).to.equal(true);
         }
     ),
     createFunctionStep(
@@ -46,6 +47,12 @@ export default {
       ({ formatSentence }) =>
         function* testFunction() {
           yield expect(formatSentence).to.be.a("function");
+          yield expect(formatSentence("Testing this function.")).to.be.a("string");
+          yield expect(formatSentence("testing this function.")).to.equal("Testing this function.");
+          yield expect(formatSentence("Testing this function")).to.equal("Testing this function.");
+          yield expect(formatSentence("testing this function.")).to.equal("Testing this function.");
+          yield expect(formatSentence("testing this function!")).to.equal("Testing this function!");
+          yield expect(formatSentence("testing this function?")).to.equal("Testing this function?");
         }
     ),
     createFunctionStep(
@@ -59,7 +66,16 @@ export default {
       ({ createPreview }) =>
         function* testFunction() {
           yield expect(createPreview).to.be.a("function");
-          yield expect(createPreview("Mihai is a king lalala lalala alala")).to.be.a("string");
+          yield expect(createPreview("Testing this function with words.", 2)).to.be.a("string");
+          yield expect(createPreview("Testing this function with words.", 2)).to.equal(
+            "...with words."
+          );
+          yield expect(createPreview("Testing this function with words.", 3)).to.equal(
+            "...function with words."
+          );
+          yield expect(createPreview("Testing this function with words.", 4)).to.equal(
+            "...this function with words."
+          );
         }
     ),
     createFunctionStep(
@@ -70,6 +86,16 @@ export default {
       ({ onAppendSentenceToStory }) =>
         function* testFunction() {
           yield expect(onAppendSentenceToStory).to.be.a("function");
+          yield expect(onAppendSentenceToStory).to.be.a("function");
+          yield expect(onAppendSentenceToStory([], "", () => true)).to.be.a("boolean");
+          yield expect(onAppendSentenceToStory([], "", () => true)).to.equal(true);
+          yield expect(onAppendSentenceToStory([], sentence, () => false)).to.equal(false);
+          const story = [];
+          const sentence = "Once upon a time, there was a test.";
+          onAppendSentenceToStory(story, sentence, () => true);
+          yield expect(story).to.be.an("array");
+          yield expect(story).to.have.length(1);
+          yield expect(story).to.contain(sentence);
         }
     ),
     createFunctionStep(
@@ -80,6 +106,9 @@ export default {
       ({ onRevealStory }) =>
         function* testFunction() {
           yield expect(onRevealStory).to.be.a("function");
+          const story = ["a", "b", "c"];
+          yield expect(onRevealStory).to.be.a("function");
+          yield expect(onRevealStory(story)).to.equal("a b c");
         }
     )
   ],
